@@ -3,9 +3,11 @@ import { Cursor } from "./components/Cursor";
 import { ScrollProgress } from "./components/ScrollProgress";
 import { Nav } from "./components/Nav";
 import { Hero } from "./components/Hero";
-import { Manifesto } from "./components/Manifesto";
+import { About } from "./components/About";
+import { PullQuote } from "./components/PullQuote";
 import { Stats } from "./components/Stats";
 import { Ventures } from "./components/Ventures";
+import { Timeline } from "./components/Timeline";
 import { Principles } from "./components/Principles";
 import { Press } from "./components/Press";
 import { Contact } from "./components/Contact";
@@ -21,9 +23,11 @@ function App() {
       <Nav />
       <main>
         <Hero />
-        <Manifesto />
+        <About />
+        <PullQuote />
         <Stats />
         <Ventures />
+        <Timeline />
         <Principles />
         <Press />
         <Contact />

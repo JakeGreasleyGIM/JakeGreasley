@@ -2,9 +2,10 @@ import { useEffect, useState } from "react";
 import { site } from "../data/site";
 
 const links = [
-  { href: "#manifesto", label: "Manifesto" },
-  { href: "#ventures", label: "Ventures" },
-  { href: "#principles", label: "Principles" },
+  { href: "#about", label: "Profile" },
+  { href: "#ventures", label: "Works" },
+  { href: "#timeline", label: "Chapters" },
+  { href: "#principles", label: "Doctrine" },
   { href: "#contact", label: "Contact" },
 ];
 
