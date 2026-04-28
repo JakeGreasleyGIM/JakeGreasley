@@ -1,39 +1,35 @@
-import { useEffect, useState } from "react";
-import type { Schema } from "../amplify/data/resource";
-import { generateClient } from "aws-amplify/data";
-
-const client = generateClient<Schema>();
+import { ParticleField } from "./components/ParticleField";
+import { Cursor } from "./components/Cursor";
+import { ScrollProgress } from "./components/ScrollProgress";
+import { Nav } from "./components/Nav";
+import { Hero } from "./components/Hero";
+import { Manifesto } from "./components/Manifesto";
+import { Stats } from "./components/Stats";
+import { Ventures } from "./components/Ventures";
+import { Principles } from "./components/Principles";
+import { Press } from "./components/Press";
+import { Contact } from "./components/Contact";
+import { Footer } from "./components/Footer";
+import "./App.css";
 
 function App() {
-  const [todos, setTodos] = useState<Array<Schema["Todo"]["type"]>>([]);
-
-  useEffect(() => {
-    client.models.Todo.observeQuery().subscribe({
-      next: (data) => setTodos([...data.items]),
-    });
-  }, []);
-
-  function createTodo() {
-    client.models.Todo.create({ content: window.prompt("Todo content") });
-  }
-
   return (
-    <main>
-      <h1>My todos</h1>
-      <button onClick={createTodo}>+ new</button>
-      <ul>
-        {todos.map((todo) => (
-          <li key={todo.id}>{todo.content}</li>
-        ))}
-      </ul>
-      <div>
-        🥳 App successfully hosted. Try creating a new todo.
-        <br />
-        <a href="https://docs.amplify.aws/react/start/quickstart/#make-frontend-updates">
-          Review next step of this tutorial.
-        </a>
-      </div>
-    </main>
+    <>
+      <ParticleField />
+      <ScrollProgress />
+      <Cursor />
+      <Nav />
+      <main>
+        <Hero />
+        <Manifesto />
+        <Stats />
+        <Ventures />
+        <Principles />
+        <Press />
+        <Contact />
+      </main>
+      <Footer />
+    </>
   );
 }
 

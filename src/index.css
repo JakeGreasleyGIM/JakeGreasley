@@ -1,65 +1,179 @@
+/* ============================================================
+   Jake Greasley — Global stylesheet
+   ============================================================ */
+
+:root {
+  /* Color system */
+  --bg: #0a0a0a;
+  --bg-elev: #111113;
+  --bg-soft: #15151a;
+  --line: rgba(255, 255, 255, 0.08);
+  --line-strong: rgba(255, 255, 255, 0.16);
+  --ink: #f5f3ee;
+  --ink-soft: rgba(245, 243, 238, 0.72);
+  --ink-mute: rgba(245, 243, 238, 0.45);
+  --ink-faint: rgba(245, 243, 238, 0.22);
+
+  --gold: #d4af37;
+  --gold-light: #ffe27a;
+  --gold-deep: #7d6116;
+  --gold-grad: linear-gradient(135deg, #ffe27a 0%, #d4af37 38%, #b8902a 70%, #7d6116 100%);
+
+  --blue: #5ce1e6;
+  --red: #ff3b30;
+
+  /* Typography */
+  --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-serif: "Fraunces", "Times New Roman", Georgia, serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+
+  /* Layout */
+  --container: 1320px;
+  --gutter: clamp(20px, 5vw, 64px);
+  --section-y: clamp(96px, 14vh, 180px);
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
 body {
   margin: 0;
-  background: linear-gradient(180deg, rgb(117, 81, 194), rgb(255, 255, 255));
-  display: flex;
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  height: 100vh;
-  width: 100vw;
-  justify-content: center;
-  align-items: center;
+  padding: 0;
 }
 
-main {
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
+html {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  scroll-behavior: smooth;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-  color: white;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+body {
+  min-height: 100vh;
+  background:
+    radial-gradient(1200px 600px at 80% -10%, rgba(212, 175, 55, 0.08), transparent 60%),
+    radial-gradient(900px 500px at -10% 30%, rgba(92, 225, 230, 0.04), transparent 60%),
+    var(--bg);
+  overflow-x: hidden;
+  cursor: none;
 }
 
-ul {
-  padding-inline-start: 0;
-  margin-block-start: 0;
-  margin-block-end: 0;
-  list-style-type: none;
-  display: flex;
-  flex-direction: column;
-  margin: 8px 0;
-  border: 1px solid black;
-  gap: 1px;
-  background-color: black;
-  border-radius: 8px;
-  overflow: auto;
+@media (max-width: 900px) {
+  body {
+    cursor: auto;
+  }
 }
 
-li {
-  background-color: white;
-  padding: 8px;
-}
-
-li:hover {
-  background: #dadbf9;
+::selection {
+  background: var(--gold);
+  color: #0a0a0a;
 }
 
 a {
-  font-weight: 800;
+  color: inherit;
   text-decoration: none;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+button {
+  font-family: inherit;
+  background: none;
+  border: none;
+  color: inherit;
+  cursor: none;
+  padding: 0;
+}
+
+@media (max-width: 900px) {
+  button,
+  a {
+    cursor: pointer;
+  }
+}
+
+/* Reusable type tokens */
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+}
+
+.eyebrow .num {
+  color: var(--gold);
+  margin-right: 12px;
+}
+
+.serif {
+  font-family: var(--font-serif);
+  font-feature-settings: "ss01", "ss02";
+}
+
+.italic {
+  font-style: italic;
+}
+
+.gold-text {
+  background: var(--gold-grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Containers */
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+.section {
+  position: relative;
+  padding: var(--section-y) 0;
+}
+
+.section + .section {
+  border-top: 1px solid var(--line);
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--line-strong);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--gold);
 }
